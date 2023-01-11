@@ -1,0 +1,37 @@
+{
+    "name": "nearata/flarum-ext-ajax-chat",
+    "description": "no desc.",
+    "keywords": [
+        "flarum",
+        "ajax",
+        "chat"
+    ],
+    "type": "flarum-extension",
+    "license": "Unlicense",
+    "require": {
+        "flarum/core": "^1.6.0"
+    },
+    "authors": [
+        {
+            "name": "Nearata",
+            "email": "nearata@protonmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nearata\\AjaxChat\\": "src/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Ajax Chat",
+            "category": "feature",
+            "icon": {
+                "name": "",
+                "color": "#fff",
+                "backgroundColor": "#000"
+            }
+        }
+    }
+}
