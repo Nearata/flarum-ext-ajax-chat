@@ -1,6 +1,6 @@
 # Ajax Chat
 
-A [Flarum](http://flarum.org) extension. no desc.
+> no desc
 
 ## Install
 
@@ -17,7 +17,3 @@ composer update nearata/flarum-ext-ajax-chat:"*"
 php flarum migrate
 php flarum cache:clear
 ```
-
-## Links
-
-- [Packagist](https://packagist.org/packages/nearata/flarum-ext-ajax-chat)
