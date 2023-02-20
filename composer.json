@@ -2,9 +2,7 @@
     "name": "nearata/flarum-ext-ajax-chat",
     "description": "no desc.",
     "keywords": [
-        "flarum",
-        "ajax",
-        "chat"
+        "flarum"
     ],
     "type": "flarum-extension",
     "license": "Unlicense",
@@ -30,7 +28,7 @@
             "icon": {
                 "name": "",
                 "color": "#fff",
-                "backgroundColor": "#000"
+                "backgroundColor": "#948392"
             }
         }
     }
