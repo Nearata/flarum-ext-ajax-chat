@@ -10,6 +10,9 @@
         "php": "^8.0",
         "flarum/core": "^1.7"
     },
+    "require-dev": {
+        "laravel/pint": "^1.5.0"
+    },
     "authors": [
         {
             "name": "Nearata",
@@ -32,5 +35,8 @@
                 "backgroundColor": "#948392"
             }
         }
+    },
+    "scripts": {
+        "format": "pint src"
     }
 }

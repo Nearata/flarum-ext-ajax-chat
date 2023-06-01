@@ -1,6 +1,7 @@
 nearata-ajax-chat:
   admin:
-    my_cool_key: My Cool Key
-
-  forum:
-    my_cool_key: My Cool Key
+    permissions:
+      view: Can view messages
+      create: Can create messages
+      edit: Can edit messages
+      delete: Can delete messages
