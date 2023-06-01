@@ -6,6 +6,15 @@
 
 > Ajax Chat for Flarum
 
+## WORK IN PROGRESS
+
+**TODO**:
+
+- [ ] create messages
+- [ ] view messages
+- [ ] edit messages
+- [ ] delete messages
+
 ## Install
 
 ```sh
