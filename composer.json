@@ -1,13 +1,14 @@
 {
     "name": "nearata/flarum-ext-ajax-chat",
-    "description": "no desc.",
+    "description": "Ajax Chat for Flarum.",
     "keywords": [
         "flarum"
     ],
     "type": "flarum-extension",
     "license": "Unlicense",
     "require": {
-        "flarum/core": "^1.6.0"
+        "php": "^8.0",
+        "flarum/core": "^1.7"
     },
     "authors": [
         {
@@ -26,7 +27,7 @@
             "title": "Ajax Chat",
             "category": "feature",
             "icon": {
-                "name": "",
+                "name": "far fa-comment-alt",
                 "color": "#fff",
                 "backgroundColor": "#948392"
             }

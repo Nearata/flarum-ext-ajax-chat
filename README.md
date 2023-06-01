@@ -1,10 +1,8 @@
 # Ajax Chat
 
-> no desc
+> Ajax Chat for Flarum
 
 ## Install
-
-Install with composer:
 
 ```sh
 composer require nearata/flarum-ext-ajax-chat:"*"
