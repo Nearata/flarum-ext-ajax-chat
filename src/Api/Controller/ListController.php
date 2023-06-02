@@ -15,14 +15,22 @@ class ListController extends AbstractListController
 
     public $include = ['user'];
 
+    // The number of records included by default.
+    public $limit = 20;
+
+    // The maximum number of records that can be requested.
+    public $maxLimit = 50;
+
     protected function data(ServerRequestInterface $request, Document $document)
     {
         $actor = RequestUtil::getActor($request);
 
         $actor->assertRegistered();
-
         $actor->assertCan('nearata-ajax-chat.view');
 
-        return AjaxChat::all();
+        $limit = $this->extractLimit($request);
+        $offset = $this->extractOffset($request);
+
+        return AjaxChat::query()->skip($offset)->limit($limit)->get();
     }
 }

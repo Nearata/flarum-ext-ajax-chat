@@ -8,7 +8,7 @@
     "license": "Unlicense",
     "require": {
         "php": "^8.0",
-        "flarum/core": "^1.7"
+        "flarum/core": "^1.8"
     },
     "require-dev": {
         "laravel/pint": "^1.5.0"
