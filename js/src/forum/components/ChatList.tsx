@@ -35,7 +35,7 @@ export default class ChatList extends Component {
         {!this.state.loading && !this.state.data.length && (
           <Placeholder
             text={app.translator.trans(
-              "nearata-ajax-chat.forum.chat.placeholder_label"
+              "nearata-ajax-chat.forum.chat.list.placeholder_label"
             )}
           />
         )}

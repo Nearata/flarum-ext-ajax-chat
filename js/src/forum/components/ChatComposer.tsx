@@ -2,6 +2,7 @@ import AjaxChat from "../models/AjaxChat";
 import ChatState from "../states/ChatState";
 import Component from "flarum/common/Component";
 import Button from "flarum/common/components/Button";
+import Tooltip from "flarum/common/components/Tooltip";
 import Stream from "flarum/common/utils/Stream";
 import app from "flarum/forum/app";
 import type Mithril from "mithril";
@@ -30,17 +31,23 @@ export default class ChatComposer extends Component {
             name="content"
             bidi={this.content}
             placeholder={app.translator.trans(
-              "nearata-ajax-chat.forum.chat.composer_placeholder_label"
+              "nearata-ajax-chat.forum.chat.composer.placeholder_label"
             )}
             disabled={this.loading}
           />
-          <Button
-            class="Button Button--icon"
-            icon="fas fa-paper-plane"
-            onclick={this.onClick.bind(this)}
-            type="submit"
-            loading={this.loading}
-          />
+          <Tooltip
+            text={app.translator.trans(
+              "nearata-ajax-chat.forum.chat.composer.submit_button_tooltip"
+            )}
+          >
+            <Button
+              class="Button Button--icon"
+              icon="fas fa-paper-plane"
+              onclick={this.onClick.bind(this)}
+              type="submit"
+              loading={this.loading}
+            />
+          </Tooltip>
         </form>
       </div>
     );

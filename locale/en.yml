@@ -8,5 +8,8 @@ nearata-ajax-chat:
   forum:
     chat:
       label: CHAT
-      placeholder_label: No messages to display
-      composer_placeholder_label: Message here...
+      list:
+        placeholder_label: No messages to display
+      composer:
+        placeholder_label: Message here...
+        submit_button_tooltip: Send Message
