@@ -5,3 +5,6 @@ nearata-ajax-chat:
       create: Can create messages
       edit: Can edit messages
       delete: Can delete messages
+  forum:
+    chat:
+      label: CHAT
