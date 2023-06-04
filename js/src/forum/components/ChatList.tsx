@@ -1,6 +1,8 @@
 import ChatState from "../states/ChatState";
 import ChatMessage from "./ChatMessage";
 import Component from "flarum/common/Component";
+import Placeholder from "flarum/common/components/Placeholder";
+import app from "flarum/forum/app";
 import type Mithril from "mithril";
 
 export default class ChatList extends Component {
@@ -29,6 +31,13 @@ export default class ChatList extends Component {
   view(vnode: Mithril.Vnode<this>) {
     return (
       <div class="NearataAjaxChat ChatList">
+        {!this.state.loading && !this.state.data.length && (
+          <Placeholder
+            text={app.translator.trans(
+              "nearata-ajax-chat.forum.chat.placeholder_label"
+            )}
+          />
+        )}
         {this.state.data
           .sort((a, b) => a.createdAt() - b.createdAt())
           .map((i) => {

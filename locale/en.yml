@@ -8,3 +8,4 @@ nearata-ajax-chat:
   forum:
     chat:
       label: CHAT
+      placeholder_label: No messages to display
