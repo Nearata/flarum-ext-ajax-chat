@@ -26,13 +26,6 @@ export default class ChatList extends Component {
     }
   }
 
-  focus(behavior: ScrollBehavior = "smooth") {
-    this.element.lastElementChild?.scrollIntoView({
-      behavior,
-      block: "nearest",
-    });
-  }
-
   view(vnode: Mithril.Vnode<this>) {
     return (
       <div class="NearataAjaxChat ChatList">
