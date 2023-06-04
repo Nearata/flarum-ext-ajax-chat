@@ -32,7 +32,7 @@ class UpdateController extends AbstractShowController
         $actor->assertRegistered();
 
         $id = Arr::get($request->getQueryParams(), 'id');
-        $content = Arr::get($request->getParsedBody(), 'content');
+        $content = Arr::get($request->getParsedBody(), 'data.attributes.content');
 
         $this->validator->assertValid(['content' => $content]);
 

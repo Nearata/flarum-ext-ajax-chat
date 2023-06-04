@@ -15,6 +15,11 @@ class CreateController extends AbstractCreateController
 {
     public $serializer = AjaxChatSerializer::class;
 
+    public $include = [
+        'user',
+        'user.groups',
+    ];
+
     /**
      * @var CreateValidator
      */
@@ -33,7 +38,7 @@ class CreateController extends AbstractCreateController
 
         $actor->assertCan('nearata-ajax-chat.create');
 
-        $content = Arr::get($request->getParsedBody(), 'content');
+        $content = Arr::get($request->getParsedBody(), 'data.attributes.content');
 
         $this->validator->assertValid(['content' => $content]);
 

@@ -21,10 +21,10 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Routes('api'))
-        ->get('/nearata/ajaxChat/messages', 'nearata-ajax-chat.list', ListController::class)
-        ->post('/nearata/ajaxChat/messages', 'nearata-ajax-chat.create', CreateController::class)
-        ->patch('/nearata/ajaxChat/messages/{id}', 'nearata-ajax-chat.update', UpdateController::class)
-        ->delete('/nearata/ajaxChat/messages/{id}', 'nearata-ajax-chat.delete', DeleteController::class),
+        ->get('/ajaxChat', 'nearata-ajax-chat.list', ListController::class)
+        ->post('/ajaxChat', 'nearata-ajax-chat.create', CreateController::class)
+        ->patch('/ajaxChat/{id}', 'nearata-ajax-chat.update', UpdateController::class)
+        ->delete('/ajaxChat/{id}', 'nearata-ajax-chat.delete', DeleteController::class),
 
     (new Extend\Policy)
         ->modelPolicy(AjaxChat::class, AjaxChatPolicy::class)

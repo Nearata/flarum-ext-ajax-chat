@@ -13,8 +13,8 @@ class AjaxChatSerializer extends AbstractSerializer
     {
         return [
             'content' => $message->content,
-            'created_at' => $message->created_at,
-            'updated_at' => $message->updated_at,
+            'createdAt' => $message->created_at,
+            'updatedAt' => $message->updated_at,
         ];
     }
 

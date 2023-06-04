@@ -13,7 +13,10 @@ class ListController extends AbstractListController
 {
     public $serializer = AjaxChatSerializer::class;
 
-    public $include = ['user'];
+    public $include = [
+        'user',
+        'user.groups',
+    ];
 
     // The number of records included by default.
     public $limit = 20;
@@ -31,6 +34,10 @@ class ListController extends AbstractListController
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);
 
-        return AjaxChat::query()->skip($offset)->limit($limit)->get();
+        return AjaxChat::query()
+            ->latest()
+            ->skip($offset)
+            ->limit($limit)
+            ->get();
     }
 }
