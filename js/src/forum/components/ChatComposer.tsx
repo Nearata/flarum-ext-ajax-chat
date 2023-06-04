@@ -10,19 +10,38 @@ export default class ChatComposer extends Component {
   // @ts-expect-error
   state!: ChatState;
   content!: Stream<string>;
+  loading!: boolean;
 
   oninit(vnode: Mithril.Vnode<this>): void {
     super.oninit(vnode);
 
     this.state = vnode.attrs.state;
     this.content = Stream("");
+    this.loading = false;
   }
 
   view(vnode: Mithril.Vnode<this>) {
     return (
       <div class="ChatComposer">
-        <input type="text" name="content" bidi={this.content} />
-        <Button onclick={this.onClick.bind(this)}>Send</Button>
+        <form>
+          <input
+            class="FormControl"
+            type="text"
+            name="content"
+            bidi={this.content}
+            placeholder={app.translator.trans(
+              "nearata-ajax-chat.forum.chat.composer_placeholder_label"
+            )}
+            disabled={this.loading}
+          />
+          <Button
+            class="Button Button--icon"
+            icon="fas fa-paper-plane"
+            onclick={this.onClick.bind(this)}
+            type="submit"
+            loading={this.loading}
+          />
+        </form>
       </div>
     );
   }
@@ -30,14 +49,20 @@ export default class ChatComposer extends Component {
   onClick(e: PointerEvent) {
     e.preventDefault();
 
+    this.loading = true;
+
     app.store
       .createRecord<AjaxChat>("ajaxChat")
       .save({ content: this.content() })
-      .then((r) => {
+      .then(() => {
         this.content("");
 
         this.state.refresh();
       })
-      .catch((e) => console.error(e));
+      .catch((e) => console.error(e))
+      .finally(() => {
+        this.loading = false;
+        m.redraw();
+      });
   }
 }

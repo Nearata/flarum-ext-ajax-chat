@@ -9,3 +9,4 @@ nearata-ajax-chat:
     chat:
       label: CHAT
       placeholder_label: No messages to display
+      composer_placeholder_label: Message here...
