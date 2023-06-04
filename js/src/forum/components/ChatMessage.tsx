@@ -19,7 +19,7 @@ export default class ChatMessage extends Component {
 
   view(vnode: Mithril.Vnode<this>) {
     return (
-      <div class="NearataAjaxChat ChatMessage">
+      <div class="ChatMessage">
         <div class="avatar">{avatar(this.message.user())}</div>
         <div class="body">
           <header>

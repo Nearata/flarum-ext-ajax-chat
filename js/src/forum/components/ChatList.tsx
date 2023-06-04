@@ -1,6 +1,7 @@
 import ChatState from "../states/ChatState";
 import ChatMessage from "./ChatMessage";
 import Component from "flarum/common/Component";
+import LoadingIndicator from "flarum/common/components/LoadingIndicator";
 import Placeholder from "flarum/common/components/Placeholder";
 import app from "flarum/forum/app";
 import type Mithril from "mithril";
@@ -30,7 +31,7 @@ export default class ChatList extends Component {
 
   view(vnode: Mithril.Vnode<this>) {
     return (
-      <div class="NearataAjaxChat ChatList">
+      <div class="ChatList">
         {!this.state.loading && !this.state.data.length && (
           <Placeholder
             text={app.translator.trans(
@@ -43,6 +44,7 @@ export default class ChatList extends Component {
           .map((i) => {
             return <ChatMessage message={i} />;
           })}
+        {this.state.loading && <LoadingIndicator />}
       </div>
     );
   }
