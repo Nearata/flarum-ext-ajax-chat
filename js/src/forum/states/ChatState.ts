@@ -27,6 +27,8 @@ export default class ChatState {
       .find<AjaxChat[]>("ajaxChat", params)
       .then((r) => {
         this.data = [...r];
+
+        this.needsFocus = true;
       })
       .catch((e) => console.error(e))
       .finally(() => {
