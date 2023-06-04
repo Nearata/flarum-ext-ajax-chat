@@ -26,7 +26,9 @@ export default class Chat extends Component {
           </div>
           <ChatList state={this.state} />
           {this.state.loading && <LoadingIndicator />}
-          <ChatComposer state={this.state} />
+          {app.session.user!.attribute("nearata-ajax-chat.canCreate") && (
+            <ChatComposer state={this.state} />
+          )}
         </div>
       </div>
     );

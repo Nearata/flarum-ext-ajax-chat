@@ -5,6 +5,10 @@ import IndexPage from "flarum/forum/components/IndexPage";
 
 app.initializers.add("nearata-ajax-chat", () => {
   override(IndexPage.prototype, "hero", function (original) {
+    if (!app.session.user?.attribute("nearata-ajax-chat.canView")) {
+      return original();
+    }
+
     return [original(), <Chat />];
   });
 });

@@ -2,7 +2,9 @@
 
 namespace Nearata\AjaxChat;
 
+use Flarum\Api\Serializer\BasicUserSerializer;
 use Flarum\Extend;
+use Nearata\AjaxChat\Api\Controller\BasicUserSerializerAttributes;
 use Nearata\AjaxChat\Api\Controller\CreateController;
 use Nearata\AjaxChat\Api\Controller\DeleteController;
 use Nearata\AjaxChat\Api\Controller\ListController;
@@ -27,5 +29,8 @@ return [
         ->delete('/ajaxChat/{id}', 'nearata-ajax-chat.delete', DeleteController::class),
 
     (new Extend\Policy)
-        ->modelPolicy(AjaxChat::class, AjaxChatPolicy::class)
+        ->modelPolicy(AjaxChat::class, AjaxChatPolicy::class),
+
+    (new Extend\ApiSerializer(BasicUserSerializer::class))
+        ->attributes(BasicUserSerializerAttributes::class)
 ];
