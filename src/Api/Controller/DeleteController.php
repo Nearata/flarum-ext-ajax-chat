@@ -15,6 +15,7 @@ class DeleteController extends AbstractDeleteController
         $actor = RequestUtil::getActor($request);
 
         $actor->assertRegistered();
+        $actor->assertPermission('nearata-ajax-chat.delete');
 
         $id = Arr::get($request->getQueryParams(), 'id');
 

@@ -30,6 +30,7 @@ class UpdateController extends AbstractShowController
         $actor = RequestUtil::getActor($request);
 
         $actor->assertRegistered();
+        $actor->assertPermission('nearata-ajax-chat.edit');
 
         $id = Arr::get($request->getQueryParams(), 'id');
         $content = Arr::get($request->getParsedBody(), 'data.attributes.content');
