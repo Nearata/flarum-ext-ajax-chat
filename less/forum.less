@@ -47,14 +47,20 @@
       }
     }
 
-    .ChatComposer form {
-      display: grid;
-      grid-auto-flow: column;
-      gap: .5rem;
-      padding: 1rem;
-      grid-template-columns: 1fr auto;
-      max-width: 500px;
-      margin: 0 auto;
+    .ChatComposer {
+      box-shadow: 0 0 .5rem -.25rem rgba(0, 0, 0, .5);
+      position: relative;
+      margin-top: .25rem;
+
+      form {
+        display: grid;
+        grid-auto-flow: column;
+        gap: .5rem;
+        padding: 1rem;
+        grid-template-columns: 1fr auto;
+        max-width: 500px;
+        margin: 0 auto;
+      }
     }
   }
 }
