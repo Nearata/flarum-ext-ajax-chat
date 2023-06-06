@@ -13,3 +13,5 @@ nearata-ajax-chat:
       composer:
         placeholder_label: Message here...
         submit_button_tooltip: Send Message
+      options:
+        auto_focus: Auto Focus

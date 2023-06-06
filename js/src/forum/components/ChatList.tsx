@@ -18,7 +18,10 @@ export default class ChatList extends Component {
   onupdate(vnode: Mithril.VnodeDOM<this>): void {
     super.onupdate(vnode);
 
-    if (this.state.needsFocus) {
+    if (
+      app.session.user!.preferences()?.nearataAjaxChatAutoFocus &&
+      this.state.needsFocus
+    ) {
       this.state.needsFocus = false;
 
       this.element.lastElementChild?.scrollIntoView({

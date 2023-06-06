@@ -32,5 +32,8 @@ return [
         ->modelPolicy(AjaxChat::class, AjaxChatPolicy::class),
 
     (new Extend\ApiSerializer(BasicUserSerializer::class))
-        ->attributes(BasicUserSerializerAttributes::class)
+        ->attributes(BasicUserSerializerAttributes::class),
+
+    (new Extend\User)
+        ->registerPreference('nearataAjaxChatAutoFocus', 'boolval', true)
 ];
