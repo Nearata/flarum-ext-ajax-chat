@@ -7,7 +7,7 @@ export default class ChatState {
   needsFocus: boolean;
 
   constructor() {
-    this.loading = true;
+    this.loading = false;
     this.data = [];
     this.needsFocus = false;
   }
@@ -23,12 +23,18 @@ export default class ChatState {
       },
     };
 
+    const oldData = this.data;
+
     await app.store
       .find<AjaxChat[]>("ajaxChat", params)
       .then((r) => {
         this.data = [...r];
 
-        this.needsFocus = true;
+        this.data.sort((a, b) => a.createdAt() - b.createdAt());
+
+        if (this.data.length > oldData.length) {
+          this.needsFocus = true;
+        }
       })
       .catch((e) => console.error(e))
       .finally(() => {

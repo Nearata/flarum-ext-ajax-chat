@@ -5,8 +5,19 @@
 
     .heading {
       background-color: var(--primary-color);
-      color: #fff;
-      padding: 0 .25rem;
+      padding: .3rem .25rem;
+      display: flex;
+      justify-content: space-between;
+      height: 30px;
+
+      .label,
+      .LoadingIndicator-container {
+        color: #fff;
+      }
+
+      .LoadingIndicator-container {
+        height: auto;
+      }
     }
 
     .ChatList {

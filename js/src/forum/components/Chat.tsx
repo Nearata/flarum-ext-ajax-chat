@@ -2,6 +2,7 @@ import ChatState from "../states/ChatState";
 import ChatComposer from "./ChatComposer";
 import ChatList from "./ChatList";
 import Component from "flarum/common/Component";
+import LoadingIndicator from "flarum/common/components/LoadingIndicator";
 import app from "flarum/forum/app";
 import type Mithril from "mithril";
 
@@ -12,8 +13,7 @@ export default class Chat extends Component {
   oninit(vnode: Mithril.Vnode<this>): void {
     super.oninit(vnode);
 
-    this.state = new ChatState();
-    this.state.load();
+    this.state = vnode.attrs.state;
   }
 
   view(vnode: Mithril.Vnode<this>) {
@@ -21,7 +21,10 @@ export default class Chat extends Component {
       <div class="NearataAjaxChat container">
         <div class="Chat">
           <div class="heading">
-            {app.translator.trans("nearata-ajax-chat.forum.chat.label")}
+            <div class="label">
+              {app.translator.trans("nearata-ajax-chat.forum.chat.label")}
+            </div>
+            {this.state.loading && <LoadingIndicator />}
           </div>
           <ChatList state={this.state} />
           {app.session.user!.attribute("nearata-ajax-chat.canCreate") && (

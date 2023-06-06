@@ -1,7 +1,6 @@
 import ChatState from "../states/ChatState";
 import ChatMessage from "./ChatMessage";
 import Component from "flarum/common/Component";
-import LoadingIndicator from "flarum/common/components/LoadingIndicator";
 import Placeholder from "flarum/common/components/Placeholder";
 import app from "flarum/forum/app";
 import type Mithril from "mithril";
@@ -39,12 +38,9 @@ export default class ChatList extends Component {
             )}
           />
         )}
-        {this.state.data
-          .sort((a, b) => a.createdAt() - b.createdAt())
-          .map((i) => {
-            return <ChatMessage message={i} />;
-          })}
-        {this.state.loading && <LoadingIndicator />}
+        {this.state.data.map((i) => {
+          return <ChatMessage message={i} />;
+        })}
       </div>
     );
   }
