@@ -78,9 +78,6 @@ export default class ChatMessage extends Component {
   controls() {
     const items = new ItemList();
 
-    const sessionUser = app.session.user!;
-    const messageUser = this.message.user() as User;
-
     if (this.message.canEdit() && !this.editing) {
       items.add(
         "edit",
