@@ -19,7 +19,7 @@ app.initializers.add("nearata-ajax-chat", () => {
         ),
         permission: "nearata-ajax-chat.create",
       },
-      "view"
+      "start"
     )
     .registerPermission(
       {
@@ -27,7 +27,7 @@ app.initializers.add("nearata-ajax-chat", () => {
         label: app.translator.trans("nearata-ajax-chat.admin.permissions.edit"),
         permission: "nearata-ajax-chat.edit",
       },
-      "view"
+      "reply"
     )
     .registerPermission(
       {
@@ -38,5 +38,25 @@ app.initializers.add("nearata-ajax-chat", () => {
         permission: "nearata-ajax-chat.delete",
       },
       "view"
+    )
+    .registerPermission(
+      {
+        icon: "fas fa-edit",
+        label: app.translator.trans(
+          "nearata-ajax-chat.admin.permissions.edit_others"
+        ),
+        permission: "nearata-ajax-chat.editOthers",
+      },
+      "moderate"
+    )
+    .registerPermission(
+      {
+        icon: "fas fa-edit",
+        label: app.translator.trans(
+          "nearata-ajax-chat.admin.permissions.delete_others"
+        ),
+        permission: "nearata-ajax-chat.deleteOthers",
+      },
+      "moderate"
     );
 });

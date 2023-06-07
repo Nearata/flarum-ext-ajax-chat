@@ -3,7 +3,7 @@
     border: .2rem solid var(--primary-color);
     margin: .5rem 0;
 
-    .header {
+    & > .header {
       background-color: var(--primary-color);
       padding: .3rem .25rem;
       display: flex;
@@ -20,7 +20,7 @@
       }
     }
 
-    .main {
+    & > .main {
       .ChatList {
         max-height: 300px;
         height: 300px;
@@ -37,30 +37,32 @@
             border-bottom: .1rem solid var(--primary-color);
           }
 
-          header {
-            display: grid;
-            grid-auto-flow: column;
-            gap: .5rem;
-            grid-auto-columns: max-content;
+          & > .body {
+            & > .header {
+              display: grid;
+              grid-auto-flow: column;
+              gap: .5rem;
+              grid-auto-columns: max-content;
 
-            .online .UserOnline {
-              font-size: .7rem;
-              color: var(--online-user-circle-color);
+              .online .UserOnline {
+                font-size: .7rem;
+                color: var(--online-user-circle-color);
+              }
+
+              .username {
+                font-weight: 700;
+              }
             }
 
-            .username {
-              font-weight: 700;
+            & > .main {
+              word-break: break-all;
             }
-          }
-
-          main {
-            word-break: break-all;
           }
         }
       }
     }
 
-    .footer {
+    & > .footer {
       box-shadow: 0 0 0.5rem -0.25rem rgba(0,0,0,0.5);
       display: grid;
       gap: 0.5rem;

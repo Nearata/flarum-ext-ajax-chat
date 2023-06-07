@@ -42,7 +42,7 @@ export default class ChatList extends Component {
           />
         )}
         {this.state.data.map((i) => {
-          return <ChatMessage message={i} />;
+          return <ChatMessage message={i} state={this.state} />;
         })}
       </div>
     );

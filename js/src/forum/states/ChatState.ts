@@ -43,10 +43,10 @@ export default class ChatState {
       });
   }
 
-  refresh() {
+  refresh(needsFocus: boolean = true) {
     this.data = app.store.all<AjaxChat>("ajaxChat");
 
-    this.needsFocus = true;
+    this.needsFocus = needsFocus;
 
     m.redraw();
   }

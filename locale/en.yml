@@ -4,14 +4,22 @@ nearata-ajax-chat:
       view: Can view messages
       create: Can create messages
       edit: Can edit messages
+      edit_others: Can edit other messages
       delete: Can delete messages
+      delete_others: Can delete other messages
   forum:
     chat:
       label: CHAT
       list:
         placeholder_label: No messages to display
       composer:
-        placeholder_label: Message here...
+        placeholder_label: Message...
         submit_button_tooltip: Send Message
       options:
         auto_focus: Auto Focus
+      message_actions:
+        edit_label: Edit
+        save_edit_label: Save
+        cancel_edit_label: Cancel
+        delete_label: Delete
+        confirm_delete_text: Are you sure? You are about to delete this message!

@@ -10,7 +10,7 @@ class AjaxChatPolicy extends AbstractPolicy
 {
     public function edit(User $actor, AjaxChat $message)
     {
-        if ($actor->isAdmin()) {
+        if ($actor->isAdmin() || $actor->hasPermission('nearata-ajax-chat.editOthers')) {
             return $this->allow();
         }
 
@@ -19,7 +19,7 @@ class AjaxChatPolicy extends AbstractPolicy
 
     public function delete(User $actor, AjaxChat $message)
     {
-        if ($actor->isAdmin()) {
+        if ($actor->isAdmin() || $actor->hasPermission('nearata-ajax-chat.deleteOthers')) {
             return $this->allow();
         }
 
