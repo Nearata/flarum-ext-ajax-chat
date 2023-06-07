@@ -58,5 +58,15 @@ app.initializers.add("nearata-ajax-chat", () => {
         permission: "nearata-ajax-chat.deleteOthers",
       },
       "moderate"
+    )
+    .registerPermission(
+      {
+        icon: "fas fa-hand-paper",
+        label: app.translator.trans(
+          "nearata-ajax-chat.admin.permissions.chat_without_throttle"
+        ),
+        permission: "nearata-ajax-chat.chatWithoutThrottle",
+      },
+      "start"
     );
 });

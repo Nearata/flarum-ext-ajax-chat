@@ -7,6 +7,7 @@ nearata-ajax-chat:
       edit_others: Can edit other messages
       delete: Can delete messages
       delete_others: Can delete other messages
+      chat_without_throttle: Chat without throttle
   forum:
     chat:
       label: CHAT
