@@ -6,6 +6,8 @@ export default class AjaxChat extends Model {
   createdAt = Model.attribute("createdAt", Model.transformDate);
   updatedAt = Model.attribute("updatedAt", Model.transformDate);
   editedAt = Model.attribute("editedAt", Model.transformDate);
+  canEdit = Model.attribute<boolean>("canEdit");
+  canDelete = Model.attribute<boolean>("canDelete");
 
   user() {
     return Model.hasOne<User>("user").call(this) as User;

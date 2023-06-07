@@ -81,12 +81,7 @@ export default class ChatMessage extends Component {
     const sessionUser = app.session.user!;
     const messageUser = this.message.user() as User;
 
-    const canEdit =
-      (sessionUser === messageUser &&
-        sessionUser.attribute("nearata-ajax-chat.canEdit")) ||
-      sessionUser.attribute("nearata-ajax-chat.canEditOthers");
-
-    if (canEdit && !this.editing) {
+    if (this.message.canEdit() && !this.editing) {
       items.add(
         "edit",
         <Button
@@ -100,12 +95,7 @@ export default class ChatMessage extends Component {
       );
     }
 
-    const canDelete =
-      (sessionUser === messageUser &&
-        sessionUser.attribute("nearata-ajax-chat.canDelete")) ||
-      sessionUser.attribute("nearata-ajax-chat.canDeleteOthers");
-
-    if (canDelete && !this.editing) {
+    if (this.message.canDelete() && !this.editing) {
       items.add(
         "delete",
         <Button

@@ -34,7 +34,7 @@ export default class ChatList extends Component {
   view(vnode: Mithril.Vnode<this>) {
     return (
       <div class="ChatList">
-        {!this.state.loading && !this.state.data.length && (
+        {!this.state.data.length && (
           <Placeholder
             text={app.translator.trans(
               "nearata-ajax-chat.forum.chat.list.placeholder_label"
