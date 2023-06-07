@@ -107,6 +107,8 @@ export default class ChatMessage extends Component {
         <Button
           className="Button Button--link"
           onclick={this.onDelete.bind(this)}
+          loading={this.loading}
+          disabled={this.loading}
         >
           {app.translator.trans(
             "nearata-ajax-chat.forum.chat.message_actions.delete_label"
@@ -184,7 +186,15 @@ export default class ChatMessage extends Component {
     );
 
     if (confirm(message)) {
-      /** @TODO */
+      this.loading = true;
+
+      this.message
+        .delete()
+        .then(() => this.state.refresh(false))
+        .finally(() => {
+          this.loading = false;
+          m.redraw();
+        });
     }
   }
 }

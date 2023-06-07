@@ -13,6 +13,10 @@ export default class ChatState {
   }
 
   async load(offset: number = 0) {
+    if (!app.session.user?.attribute("nearata-ajax-chat.canView")) {
+      return;
+    }
+
     this.loading = true;
 
     m.redraw();

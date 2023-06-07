@@ -19,7 +19,7 @@ export default class ChatList extends Component {
     super.onupdate(vnode);
 
     if (
-      app.session.user!.preferences()?.nearataAjaxChatAutoFocus &&
+      app.session.user?.preferences()?.nearataAjaxChatAutoFocus &&
       this.state.needsFocus
     ) {
       this.state.needsFocus = false;
@@ -42,7 +42,7 @@ export default class ChatList extends Component {
           />
         )}
         {this.state.data.map((i) => {
-          return <ChatMessage message={i} state={this.state} />;
+          return <ChatMessage key={i.id()} message={i} state={this.state} />;
         })}
       </div>
     );
