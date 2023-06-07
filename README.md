@@ -6,15 +6,6 @@
 
 > Ajax Chat for Flarum
 
-## WORK IN PROGRESS
-
-**TODO**:
-
-- [ ] create messages
-- [ ] view messages
-- [ ] edit messages
-- [ ] delete messages
-
 ## Install
 
 ```sh
@@ -26,5 +17,12 @@ composer require nearata/flarum-ext-ajax-chat:"*"
 ```sh
 composer update nearata/flarum-ext-ajax-chat:"*"
 php flarum migrate
+php flarum cache:clear
+```
+
+## Remove
+
+```sh
+composer remove nearata/flarum-ext-ajax-chat
 php flarum cache:clear
 ```
