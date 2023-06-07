@@ -1,5 +1,6 @@
 import AjaxChat from "../models/AjaxChat";
 import ChatState from "../states/ChatState";
+import ChatMessageEdited from "./ChatMessageEdited";
 import Component from "flarum/common/Component";
 import Button from "flarum/common/components/Button";
 import Link from "flarum/common/components/Link";
@@ -49,6 +50,9 @@ export default class ChatMessage extends Component {
               {username(this.message.user())}
             </Link>
             <div class="createdAt">{humanTime(this.message.createdAt()!)}</div>
+            {this.message.editedAt() && (
+              <ChatMessageEdited message={this.message} />
+            )}
           </header>
           <main class="main">
             <div class="content">
@@ -90,7 +94,7 @@ export default class ChatMessage extends Component {
           onclick={() => (this.editing = true)}
         >
           {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message_actions.edit_label"
+            "nearata-ajax-chat.forum.chat.message.actions.edit_label"
           )}
         </Button>
       );
@@ -111,7 +115,7 @@ export default class ChatMessage extends Component {
           disabled={this.loading}
         >
           {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message_actions.delete_label"
+            "nearata-ajax-chat.forum.chat.message.actions.delete_label"
           )}
         </Button>
       );
@@ -127,7 +131,7 @@ export default class ChatMessage extends Component {
           disabled={this.loading}
         >
           {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message_actions.save_edit_label"
+            "nearata-ajax-chat.forum.chat.message.actions.edit_save_label"
           )}
         </Button>
       );
@@ -141,7 +145,7 @@ export default class ChatMessage extends Component {
           onclick={this.onCancelEdit.bind(this)}
         >
           {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message_actions.cancel_edit_label"
+            "nearata-ajax-chat.forum.chat.message.actions.edit_cancel_label"
           )}
         </Button>
       );
@@ -181,7 +185,7 @@ export default class ChatMessage extends Component {
   onDelete(e: PointerEvent) {
     const message = extractText(
       app.translator.trans(
-        "nearata-ajax-chat.forum.chat.message_actions.confirm_delete_text"
+        "nearata-ajax-chat.forum.chat.message.actions.delete_confirm_text"
       )
     );
 

@@ -15,10 +15,16 @@ class AjaxChatSerializer extends AbstractSerializer
             'content' => $message->content,
             'createdAt' => $message->created_at,
             'updatedAt' => $message->updated_at,
+            'editedAt' => $message->edited_at,
         ];
     }
 
     protected function user($message)
+    {
+        return $this->hasOne($message, UserSerializer::class);
+    }
+
+    protected function editedUser($message)
     {
         return $this->hasOne($message, UserSerializer::class);
     }

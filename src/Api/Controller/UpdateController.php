@@ -2,6 +2,7 @@
 
 namespace Nearata\AjaxChat\Api\Controller;
 
+use Carbon\Carbon;
 use Flarum\Api\Controller\AbstractShowController;
 use Flarum\Http\RequestUtil;
 use Illuminate\Support\Arr;
@@ -14,6 +15,10 @@ use Tobscure\JsonApi\Document;
 class UpdateController extends AbstractShowController
 {
     public $serializer = AjaxChatSerializer::class;
+
+    public $include = [
+        'editedUser',
+    ];
 
     /**
      * @var UpdateValidator
@@ -37,11 +42,15 @@ class UpdateController extends AbstractShowController
 
         $this->validator->assertValid(['content' => $content]);
 
+        /** @var AjaxChat */
         $message = AjaxChat::query()->findOrFail($id);
 
         $actor->assertCan('edit', $message);
 
         $message->content = $content;
+        $message->edited_at = Carbon::now();
+        $message->edited_user_id = $actor->id;
+
         $message->save();
 
         return $message;

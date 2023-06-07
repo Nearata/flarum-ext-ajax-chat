@@ -17,9 +17,12 @@ nearata-ajax-chat:
         submit_button_tooltip: Send Message
       options:
         auto_focus: Auto Focus
-      message_actions:
-        edit_label: Edit
-        save_edit_label: Save
-        cancel_edit_label: Cancel
-        delete_label: Delete
-        confirm_delete_text: Are you sure? You are about to delete this message!
+      message:
+        edited_tooltip: "{username} edited {ago}"
+        edited_text: Edited
+        actions:
+          edit_label: Edit
+          edit_save_label: Save
+          edit_cancel_label: Cancel
+          delete_label: Delete
+          confirm_delete_text: Are you sure? You are about to delete this message!

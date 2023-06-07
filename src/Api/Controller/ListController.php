@@ -16,6 +16,7 @@ class ListController extends AbstractListController
     public $include = [
         'user',
         'user.groups',
+        'editedUser',
     ];
 
     // The number of records included by default.
