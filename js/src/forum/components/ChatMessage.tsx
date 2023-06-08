@@ -41,9 +41,7 @@ export default class ChatMessage extends Component {
 
     return (
       <div class="ChatMessage">
-        <div class="UserDetails">
-          <div class="avatar">{avatar(user)}</div>
-        </div>
+        <div class="avatar">{avatar(user)}</div>
         <div class="body">
           <header class="header">
             {user.lastSeenAt() && user.isOnline() && (
