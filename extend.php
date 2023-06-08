@@ -10,6 +10,8 @@ use Nearata\AjaxChat\Api\Controller\DeleteController;
 use Nearata\AjaxChat\Api\Controller\ListController;
 use Nearata\AjaxChat\Api\Controller\UpdateController;
 use Nearata\AjaxChat\Policy\AjaxChatPolicy;
+use Nearata\AjaxChat\Search\AjaxChatSearcher;
+use Nearata\AjaxChat\Search\Gambit\FullTextGambit;
 
 return [
     (new Extend\Frontend('forum'))
@@ -34,5 +36,8 @@ return [
         ->attributes(BasicUserSerializerAttributes::class),
 
     (new Extend\User)
-        ->registerPreference('nearataAjaxChatAutoFocus', 'boolval', true)
+        ->registerPreference('nearataAjaxChatAutoFocus', 'boolval', true),
+
+    (new Extend\SimpleFlarumSearch(AjaxChatSearcher::class))
+        ->setFullTextGambit(FullTextGambit::class)
 ];

@@ -27,3 +27,4 @@ nearata-ajax-chat:
           edit_cancel_label: Cancel
           delete_label: Delete
           delete_confirm_text: Are you sure? You are about to delete this message!
+      load_more_button_label: Load More

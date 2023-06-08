@@ -1,4 +1,5 @@
 import ChatState from "../states/ChatState";
+import ChatListLoadMore from "./ChatListLoadMore";
 import ChatMessage from "./ChatMessage";
 import Component from "flarum/common/Component";
 import Placeholder from "flarum/common/components/Placeholder";
@@ -41,6 +42,7 @@ export default class ChatList extends Component {
             )}
           />
         )}
+        <ChatListLoadMore state={this.state} />
         {this.state.data.map((i) => {
           return <ChatMessage key={i.id()} message={i} state={this.state} />;
         })}
