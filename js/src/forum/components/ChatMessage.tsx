@@ -6,6 +6,7 @@ import Button from "flarum/common/components/Button";
 import Link from "flarum/common/components/Link";
 import avatar from "flarum/common/helpers/avatar";
 import humanTime from "flarum/common/helpers/humanTime";
+import listItems from "flarum/common/helpers/listItems";
 import userOnline from "flarum/common/helpers/userOnline";
 import username from "flarum/common/helpers/username";
 import User from "flarum/common/models/User";
@@ -40,7 +41,9 @@ export default class ChatMessage extends Component {
 
     return (
       <div class="ChatMessage">
-        <div class="avatar">{avatar(user)}</div>
+        <div class="UserDetails">
+          <div class="avatar">{avatar(user)}</div>
+        </div>
         <div class="body">
           <header class="header">
             {user.lastSeenAt() && user.isOnline() && (
@@ -49,6 +52,9 @@ export default class ChatMessage extends Component {
             <Link href={app.route.user(user)}>
               {username(this.message.user())}
             </Link>
+            {!user.badges().isEmpty() && (
+              <div class="badges">{listItems(user.badges().toArray())}</div>
+            )}
             <div class="createdAt">{humanTime(this.message.createdAt()!)}</div>
             {this.message.editedAt() && (
               <ChatMessageEdited message={this.message} />
