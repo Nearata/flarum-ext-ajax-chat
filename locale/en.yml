@@ -22,9 +22,5 @@ nearata-ajax-chat:
         edited_tooltip: "{username} edited {ago}"
         edited_text: Edited
         actions:
-          edit_label: Edit
-          edit_save_label: Save
-          edit_cancel_label: Cancel
-          delete_label: Delete
           delete_confirm_text: Are you sure? You are about to delete this message!
       load_more_button_label: Load More

@@ -66,7 +66,7 @@ export default class ChatComposer extends Component {
 
         this.state.refresh();
       })
-      .catch((e) => console.error(e))
+      .catch(() => {})
       .finally(() => {
         this.loading = false;
         m.redraw();

@@ -52,7 +52,7 @@ export default class ChatState {
           this.needsFocus = true;
         }
       })
-      .catch((e) => console.error(e))
+      .catch(() => {})
       .finally(() => {
         this.loading = false;
         m.redraw();

@@ -86,13 +86,11 @@ export default class ChatMessage extends Component {
       items.add(
         "edit",
         <Button
-          className="Button Button--link"
+          className="Button Button--link Button--icon"
+          icon="fas fa-edit"
           onclick={() => (this.editing = true)}
-        >
-          {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message.actions.edit_label"
-          )}
-        </Button>
+          aria-label="edit"
+        />
       );
     }
 
@@ -100,15 +98,13 @@ export default class ChatMessage extends Component {
       items.add(
         "delete",
         <Button
-          className="Button Button--link"
+          className="Button Button--link Button--icon"
+          icon="fas fa-trash"
           onclick={this.onDelete.bind(this)}
           loading={this.loading}
           disabled={this.loading}
-        >
-          {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message.actions.delete_label"
-          )}
-        </Button>
+          aria-label="delete"
+        />
       );
     }
 
@@ -116,15 +112,13 @@ export default class ChatMessage extends Component {
       items.add(
         "saveEdit",
         <Button
-          className="Button Button--link"
+          className="Button Button--link Button--icon"
+          icon="fas fa-save"
           onclick={this.onSaveEdit.bind(this)}
           loading={this.loading}
           disabled={this.loading}
-        >
-          {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message.actions.edit_save_label"
-          )}
-        </Button>
+          aria-label="save"
+        />
       );
     }
 
@@ -132,20 +126,18 @@ export default class ChatMessage extends Component {
       items.add(
         "cancelEdit",
         <Button
-          className="Button Button--link"
+          className="Button Button--link Button--icon"
+          icon="fas fa-times"
           onclick={this.onCancelEdit.bind(this)}
-        >
-          {app.translator.trans(
-            "nearata-ajax-chat.forum.chat.message.actions.edit_cancel_label"
-          )}
-        </Button>
+          aria-label="cancel"
+        />
       );
     }
 
     return items;
   }
 
-  onSaveEdit(e: PointerEvent) {
+  onSaveEdit(_: PointerEvent) {
     this.loading = true;
 
     if (this.content() === this.message.content()) {
@@ -159,7 +151,7 @@ export default class ChatMessage extends Component {
         content: this.content(),
       })
       .then(() => this.state.refresh(false))
-      .catch((e) => console.error(e))
+      .catch(() => {})
       .finally(() => {
         this.editing = false;
         this.loading = false;
@@ -168,12 +160,12 @@ export default class ChatMessage extends Component {
       });
   }
 
-  onCancelEdit(e: PointerEvent) {
+  onCancelEdit(_: PointerEvent) {
     this.editing = false;
     this.content(this.message.content());
   }
 
-  onDelete(e: PointerEvent) {
+  onDelete(_: PointerEvent) {
     const message = extractText(
       app.translator.trans(
         "nearata-ajax-chat.forum.chat.message.actions.delete_confirm_text"
@@ -186,6 +178,7 @@ export default class ChatMessage extends Component {
       this.message
         .delete()
         .then(() => this.state.refresh(false))
+        .catch(() => {})
         .finally(() => {
           this.loading = false;
           m.redraw();

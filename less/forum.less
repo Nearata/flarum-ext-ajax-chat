@@ -36,7 +36,7 @@
           display: grid;
           grid-auto-flow: column;
           grid-auto-columns: auto 1fr;
-          gap: 1rem;
+          gap: .25rem;
           padding: .25rem .2rem;
 
           &:not(:last-child) {
@@ -79,10 +79,15 @@
             }
 
             & > .footer {
-              display: flex;
+              display: grid;
+              grid-auto-flow: column;
               justify-content: end;
               opacity: 0;
               transition: all .25s ease;
+
+              & > .Button {
+                padding: 0;
+              }
             }
           }
 
