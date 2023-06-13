@@ -8,13 +8,17 @@ import type Mithril from "mithril";
 export default class ChatOptions extends Component {
   loading!: boolean;
   autoFocus: Stream<boolean>;
+  playSound: Stream<boolean>;
 
   oninit(vnode: Mithril.Vnode<this>): void {
     super.oninit(vnode);
 
     this.loading = false;
     this.autoFocus = Stream(
-      app.session.user!.preferences()?.nearataAjaxChatAutoFocus || false
+      app.session.user!.preferences()!.nearataAjaxChatAutoFocus
+    );
+    this.playSound = Stream(
+      app.session.user!.preferences()!.nearataAjaxChatPlaySound
     );
   }
 
@@ -39,6 +43,20 @@ export default class ChatOptions extends Component {
       </Switch>
     );
 
+    items.add(
+      "playSound",
+      <Switch
+        onchange={this.onChangePlaySound.bind(this)}
+        state={this.playSound()}
+        loading={this.loading}
+        disabled={this.loading}
+      >
+        {app.translator.trans(
+          "nearata-ajax-chat.forum.chat.options.play_sound"
+        )}
+      </Switch>
+    );
+
     return items;
   }
 
@@ -50,7 +68,22 @@ export default class ChatOptions extends Component {
         nearataAjaxChatAutoFocus: value,
       })
       .then(() => this.autoFocus(value))
-      .catch((e) => console.error(e))
+      .catch(() => {})
+      .finally(() => {
+        this.loading = false;
+        m.redraw();
+      });
+  }
+
+  onChangePlaySound(value: boolean) {
+    this.loading = true;
+
+    app.session
+      .user!.savePreferences({
+        nearataAjaxChatPlaySound: value,
+      })
+      .then(() => this.playSound(value))
+      .catch(() => {})
       .finally(() => {
         this.loading = false;
         m.redraw();

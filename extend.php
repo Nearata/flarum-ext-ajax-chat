@@ -36,7 +36,8 @@ return [
         ->attributes(BasicUserSerializerAttributes::class),
 
     (new Extend\User)
-        ->registerPreference('nearataAjaxChatAutoFocus', 'boolval', true),
+        ->registerPreference('nearataAjaxChatAutoFocus', 'boolval', true)
+        ->registerPreference('nearataAjaxChatPlaySound', 'boolval', true),
 
     (new Extend\SimpleFlarumSearch(AjaxChatSearcher::class))
         ->setFullTextGambit(FullTextGambit::class)

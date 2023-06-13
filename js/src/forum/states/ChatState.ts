@@ -50,6 +50,27 @@ export default class ChatState {
 
         if (this.data.length > oldData.length && !old) {
           this.needsFocus = true;
+
+          if (
+            oldData.length &&
+            app.session.user!.preferences()!.nearataAjaxChatPlaySound
+          ) {
+            const audio = new Audio(
+              `${app.forum.attribute(
+                "baseUrl"
+              )}/assets/extensions/nearata-ajax-chat/notification_sound.mp3`
+            );
+
+            audio.volume = 0.5;
+
+            audio.addEventListener(
+              "canplaythrough",
+              () => {
+                audio.play();
+              },
+              { once: true }
+            );
+          }
         }
       })
       .catch(() => {})

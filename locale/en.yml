@@ -18,6 +18,7 @@ nearata-ajax-chat:
         submit_button_tooltip: Send Message
       options:
         auto_focus: Auto Focus
+        play_sound: Play Sound
       message:
         edited_tooltip: "{username} edited {ago}"
         edited_text: Edited
