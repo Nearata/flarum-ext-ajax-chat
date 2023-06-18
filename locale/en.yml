@@ -1,16 +1,31 @@
 nearata-ajax-chat:
   admin:
     permissions:
-      view: Can view messages
-      create: Can create messages
-      edit: Can edit messages
-      edit_others: Can edit other messages
-      delete: Can delete messages
-      delete_others: Can delete other messages
+      view: View messages
+      create: Create messages
+      edit: Edit messages
+      edit_others: Edit other messages
+      delete: Delete messages
+      delete_others: Delete other messages
       chat_without_throttle: Chat without throttle
+    settings:
+      channels:
+        section_title: Channels
+        button_label: ADD
+        modal:
+          title:
+            create: Create Channel
+            edit: Edit Channel
+          fields:
+            name: Name
+          actions:
+            save_label: Save
+            delete_label: Delete
+          delete_confirm_text: Do you want to delete this channel? This will delete ALL messages too!
   forum:
     chat:
       label: CHAT
+      general_channel_label: General
       list:
         placeholder_label: No messages to display
       composer:

@@ -18,16 +18,11 @@ class UpdateController extends AbstractShowController
 
     public $include = [
         'editedUser',
+        'channel',
     ];
 
-    /**
-     * @var UpdateValidator
-     */
-    protected $validator;
-
-    public function __construct(UpdateValidator $validator)
+    public function __construct(protected UpdateValidator $validator)
     {
-        $this->validator = $validator;
     }
 
     protected function data(ServerRequestInterface $request, Document $document)

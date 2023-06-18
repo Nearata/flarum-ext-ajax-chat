@@ -6,6 +6,7 @@ use Flarum\Api\Controller\AbstractListController;
 use Flarum\Http\RequestUtil;
 use Flarum\Http\UrlGenerator;
 use Flarum\Query\QueryCriteria;
+use Illuminate\Support\Arr;
 use Nearata\AjaxChat\Api\Serializer\AjaxChatSerializer;
 use Nearata\AjaxChat\Search\AjaxChatSearcher;
 use Psr\Http\Message\ServerRequestInterface;
@@ -19,6 +20,7 @@ class ListController extends AbstractListController
         'user',
         'user.groups',
         'editedUser',
+        'channel',
     ];
 
     // The number of records included by default.
@@ -41,7 +43,13 @@ class ListController extends AbstractListController
         $limit = $this->extractLimit($request);
         $offset = $this->extractOffset($request);
 
-        $results = $this->searcher->search(new QueryCriteria($actor, ['q' => '']), $limit, $offset);
+        $channelId = Arr::get($request->getQueryParams(), 'channelId', 'null');
+
+        if (empty($channelId)) {
+            $channelId = 'null';
+        }
+
+        $results = $this->searcher->search(new QueryCriteria($actor, ['q' => $channelId]), $limit, $offset);
         $messages = $results->getResults();
 
         $document->addPaginationLinks(

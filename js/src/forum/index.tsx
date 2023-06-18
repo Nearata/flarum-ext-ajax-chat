@@ -29,5 +29,3 @@ app.initializers.add("nearata-ajax-chat", () => {
     return [original(), <Chat state={app.nearataAjaxChatState} />];
   });
 });
-
-export { default as extend } from "./extend";

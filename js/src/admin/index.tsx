@@ -1,3 +1,4 @@
+import Channels from "./components/Channels";
 import app from "flarum/admin/app";
 
 app.initializers.add("nearata-ajax-chat", () => {
@@ -68,5 +69,8 @@ app.initializers.add("nearata-ajax-chat", () => {
         permission: "nearata-ajax-chat.chatWithoutThrottle",
       },
       "start"
-    );
+    )
+    .registerSetting(function () {
+      return <Channels />;
+    });
 });

@@ -1,4 +1,5 @@
 import ChatState from "../states/ChatState";
+import ChatChannels from "./ChatChannels";
 import ChatComposer from "./ChatComposer";
 import ChatList from "./ChatList";
 import ChatOptions from "./ChatOptions";
@@ -25,6 +26,7 @@ export default class Chat extends Component {
             <div class="label">
               {app.translator.trans("nearata-ajax-chat.forum.chat.label")}
             </div>
+            <ChatChannels state={this.state} />
             {this.state.loading && <LoadingIndicator />}
           </header>
           <main class="main">

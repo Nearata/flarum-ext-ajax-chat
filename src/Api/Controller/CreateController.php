@@ -9,6 +9,7 @@ use Flarum\Post\Exception\FloodingException;
 use Illuminate\Support\Arr;
 use Nearata\AjaxChat\AjaxChat;
 use Nearata\AjaxChat\Api\Serializer\AjaxChatSerializer;
+use Nearata\AjaxChat\Channels;
 use Nearata\AjaxChat\Validator\CreateValidator;
 use Psr\Http\Message\ServerRequestInterface;
 use Tobscure\JsonApi\Document;
@@ -20,16 +21,11 @@ class CreateController extends AbstractCreateController
     public $include = [
         'user',
         'user.groups',
+        'channel',
     ];
 
-    /**
-     * @var CreateValidator
-     */
-    protected $validator;
-
-    public function __construct(CreateValidator $validator)
+    public function __construct(protected CreateValidator $validator)
     {
-        $this->validator = $validator;
     }
 
     protected function data(ServerRequestInterface $request, Document $document)
@@ -41,6 +37,7 @@ class CreateController extends AbstractCreateController
         $actor->assertCan('nearata-ajax-chat.create');
 
         $content = Arr::get($request->getParsedBody(), 'data.attributes.content');
+        $channelId = Arr::get($request->getParsedBody(), 'data.attributes.channelId');
 
         $this->validator->assertValid(['content' => $content]);
 
@@ -54,11 +51,8 @@ class CreateController extends AbstractCreateController
             throw new FloodingException();
         }
 
-        $message = AjaxChat::create([
-            'user_id' => $actor->id,
-            'content' => $content,
-        ]);
+        $channel = Channels::query()->find($channelId);
 
-        return $message;
+        return AjaxChat::build($actor, $content, $channel);
     }
 }

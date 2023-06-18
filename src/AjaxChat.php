@@ -13,6 +13,7 @@ use Flarum\User\User;
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $edited_at
  * @property int|null $edited_user_id
+ * @property int|null $channel_id
  */
 class AjaxChat extends AbstractModel
 {
@@ -22,7 +23,21 @@ class AjaxChat extends AbstractModel
 
     public $timestamps = true;
 
-    protected $fillable = ['user_id', 'content'];
+    public static function build(User $user, string $content, Channels $channel = null): self
+    {
+        $message = new static;
+
+        $message->user_id = $user->id;
+        $message->content = $content;
+
+        if ($channel) {
+            $message->channel_id = $channel->id;
+        }
+
+        $message->save();
+
+        return $message;
+    }
 
     public function user()
     {
@@ -32,5 +47,10 @@ class AjaxChat extends AbstractModel
     public function editedUser()
     {
         return $this->belongsTo(User::class, 'edited_user_id');
+    }
+
+    public function channel()
+    {
+        return $this->belongsTo(Channels::class, 'channel_id');
     }
 }

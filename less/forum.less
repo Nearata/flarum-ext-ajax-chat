@@ -6,9 +6,12 @@
     & > .header {
       background-color: var(--primary-color);
       padding: .3rem .25rem;
-      display: flex;
-      justify-content: space-between;
-      height: 30px;
+      display: grid;
+      height: 36px;
+      grid-auto-flow: column;
+      grid-template-columns: max-content;
+      align-content: center;
+      gap: .5rem;
 
       .label,
       .LoadingIndicator-container {
@@ -17,6 +20,7 @@
 
       .LoadingIndicator-container {
         height: auto;
+        justify-content: right;
       }
     }
 

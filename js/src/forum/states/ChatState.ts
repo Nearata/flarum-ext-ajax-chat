@@ -1,5 +1,6 @@
-import AjaxChat from "../models/AjaxChat";
+import AjaxChat from "../../common/models/AjaxChat";
 import app from "flarum/forum/app";
+import AjaxChatChannels from "src/common/models/AjaxChatChannels";
 
 export default class ChatState {
   loading: boolean;
@@ -7,6 +8,8 @@ export default class ChatState {
   needsFocus: boolean;
   offset: number;
   hasMore: boolean;
+  channelId: string | null;
+  loadingChannels: boolean;
 
   constructor() {
     this.loading = false;
@@ -14,6 +17,8 @@ export default class ChatState {
     this.needsFocus = false;
     this.offset = 0;
     this.hasMore = false;
+    this.channelId = null;
+    this.loadingChannels = false;
   }
 
   async load(old: boolean = false) {
@@ -29,6 +34,7 @@ export default class ChatState {
       page: {
         offset: old && this.hasMore ? this.offset : 0,
       },
+      channelId: this.channelId,
     };
 
     const oldData = this.data;
@@ -80,11 +86,43 @@ export default class ChatState {
       });
   }
 
+  async loadChannels() {
+    this.loadingChannels = true;
+
+    await app.store
+      .find("ajaxChatChannels")
+      .then(() => {})
+      .catch(() => {})
+      .finally(() => {
+        this.loadingChannels = false;
+
+        m.redraw();
+      });
+  }
+
   refresh(needsFocus: boolean = true) {
     this.data = app.store.all<AjaxChat>("ajaxChat");
 
     this.needsFocus = needsFocus;
 
     m.redraw();
+  }
+
+  switchChannel(channelId: string | null) {
+    this.channelId = channelId;
+
+    this.data = [];
+
+    this.load();
+  }
+
+  getData() {
+    if (this.channelId) {
+      return this.data.filter(
+        (val) => val.channel() && val.channel()!.id() === this.channelId
+      );
+    }
+
+    return this.data.filter((val) => !val.channel());
   }
 }

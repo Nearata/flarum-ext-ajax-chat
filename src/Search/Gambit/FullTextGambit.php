@@ -9,5 +9,9 @@ class FullTextGambit implements GambitInterface
 {
     public function apply(SearchState $search, $bit)
     {
+        $search->getQuery()
+            ->where('channel_id', is_numeric($bit) ? $bit : null);
+
+        return true;
     }
 }

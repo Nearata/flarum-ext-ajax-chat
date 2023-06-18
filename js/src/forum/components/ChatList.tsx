@@ -43,7 +43,7 @@ export default class ChatList extends Component {
           />
         )}
         <ChatListLoadMore state={this.state} />
-        {this.state.data.map((i) => {
+        {this.state.getData().map((i) => {
           return <ChatMessage key={i.id()} message={i} state={this.state} />;
         })}
       </div>

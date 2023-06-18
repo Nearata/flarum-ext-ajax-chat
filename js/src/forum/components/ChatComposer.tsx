@@ -1,4 +1,4 @@
-import AjaxChat from "../models/AjaxChat";
+import AjaxChat from "../../common/models/AjaxChat";
 import ChatState from "../states/ChatState";
 import Component from "flarum/common/Component";
 import Button from "flarum/common/components/Button";
@@ -60,7 +60,10 @@ export default class ChatComposer extends Component {
 
     app.store
       .createRecord<AjaxChat>("ajaxChat")
-      .save({ content: this.content() })
+      .save({
+        content: this.content(),
+        channelId: this.state.channelId,
+      })
       .then(() => {
         this.content("");
 

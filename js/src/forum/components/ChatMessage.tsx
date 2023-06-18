@@ -1,4 +1,4 @@
-import AjaxChat from "../models/AjaxChat";
+import AjaxChat from "../../common/models/AjaxChat";
 import ChatState from "../states/ChatState";
 import ChatMessageEdited from "./ChatMessageEdited";
 import Component from "flarum/common/Component";

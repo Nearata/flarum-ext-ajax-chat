@@ -1,4 +1,4 @@
-import AjaxChat from "../models/AjaxChat";
+import AjaxChat from "../../common/models/AjaxChat";
 import Component from "flarum/common/Component";
 import Tooltip from "flarum/common/components/Tooltip";
 import humanTime from "flarum/common/utils/humanTime";
